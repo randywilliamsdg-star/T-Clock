@@ -32,9 +32,10 @@ void InitFormat(const wchar_t* section, SYSTEMTIME* lt)   //--------------------
 	i = lt->wDayOfWeek - 1;
 	if(i < 0) i = 6;
 	
-	GetLocaleInfo(ilang, LOCALE_SABBREVDAYNAME1 + i, m_DayOfWeekShort, _countof(m_DayOfWeekShort));
-//	GetLocaleInfo(ilang, LOCALE_SSHORTESTDAYNAME1 + i, DayOfWeekShort, _countof(DayOfWeekShort)); // Vista+
-	GetLocaleInfo(ilang, LOCALE_SDAYNAME1 + i, m_DayOfWeekLong, _countof(m_DayOfWeekLong));
+GetLocaleInfo(ilang, LOCALE_SABBREVDAYNAME1 + i, m_DayOfWeekShort, _countof(m_DayOfWeekShort));
+m_DayOfWeekShort[0] = towupper(m_DayOfWeekShort[0]);
+GetLocaleInfo(ilang, LOCALE_SDAYNAME1 + i, m_DayOfWeekLong, _countof(m_DayOfWeekLong));
+m_DayOfWeekLong[0] = towupper(m_DayOfWeekLong[0]);
 	
 	i = lt->wMonth; i--;
 	GetLocaleInfo(ilang, LOCALE_SABBREVMONTHNAME1 + i, m_MonthShort, _countof(m_MonthShort));
